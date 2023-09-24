@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <input type="text" id="todoInput" placeholder="Enter a task...">
+        <button id="addTask">Add Task</button>
+        <ul id="taskList"></ul>
+    </div>
+
+    <script>
+        var inputElem = document.querySelector("#todoInput");
+        var btnElem = document.querySelector("#addTask");
+        var listElem = document.querySelector("#taskList");
+
+        btnElem.addEventListener('click', function() { 
+            let inputElemVal = inputElem.value;
+            var liNode = document.createElement("li");
+            var btnNode = document.createElement("button");
+            var btnTextNode = document.createTextNode("X");
+            btnNode.appendChild(btnTextNode);
+            var liTextNode = document.createTextNode(inputElemVal);
+            liNode.appendChild(liTextNode);
+            liNode.appendChild(btnNode);
+
+            liNode.addEventListener('click', function() { 
+                liNode.style.setProperty("text-decoration", "line-through");
+            });
+
+            btnNode.addEventListener('click', function() { 
+                listElem.removeChild(liNode);
+            });
+
+            
+            if(inputElemVal.trim() != "") {
+                listElem.appendChild(liNode);
+            }
+        });
+    </script>
+</body>
+</html>
